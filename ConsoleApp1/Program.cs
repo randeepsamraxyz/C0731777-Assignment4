@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Section1 
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.IO;
 
-namespace Assignment_4
+namespace ConsoleApp1
 {
     class Program
     {
@@ -23,34 +25,37 @@ namespace Assignment_4
 
         public void ReadTextFiles()
         {
-
-
-            StreamReader reader = new StreamReader("U:\Users\731777\beowolf.txt");
-            string script = reader.ReadToEnd();
-
-
-            var text = script.Trim();
-            int Count = 0, index = 0;
-
-
-            while (index < text.Length)
+            //Read file using streamReader.
+            using (StreamReader file = new StreamReader("U:/Users/731777/beowolf.txt"))
             {
+                int counter = 0;
+                string ln;
 
-                while (index < text.Length && !char.IsWhiteSpace(text[index]))
-                    index++;
-
-
-                Count++;
-
-                while (index < text.Length && char.IsWhiteSpace(text[index]))
-                    index++;
+                while ((ln = file.ReadLine()) != null)
+                {
+                    Console.WriteLine(ln);
+                    Beowulf.Add(ln);
+                    counter++;
+                }
+                file.Close();
+                Console.WriteLine($"File has {counter} lines.");
             }
-
-            Console.WriteLine("Total Number of Words are " + Count);
-
         }
 
+        public int FindNumberOfBlankSpaces(string line)
+        {
+            //https://stackoverflow.com/questions/17812566/count-words-and-spaces-in-string-c-sharp
+            int countletters = 0;
+            int countSpaces = 0;
 
-        
+            foreach (char c in line)
+            {
+                if (char.IsLetter(c)) { countletters++; }
+                if (char.IsWhiteSpace(c)) { countSpaces++; }
+            }
+            return countSpaces;
+
+
         }
     }
+}
