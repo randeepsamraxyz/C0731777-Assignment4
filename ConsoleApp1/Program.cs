@@ -1,4 +1,4 @@
-﻿//Section 4
+﻿//Section 5
 
 using System;
 using System.Collections.Generic;
@@ -18,36 +18,21 @@ namespace ConsoleApp1
         {
             Program p = new Program();
             p.Beowulf = new ArrayList();
-            p.Wordfind2();
+            p.NumLetters();
         }
-        public void Wordfind2()
+        public void NumLetters()
         {
-        
-            int chr = 0, y = 0, z = 0;
-
-            foreach (var line in File.ReadAllLines("U:/Users/731777/beowolf.txt"))
-            {
-
-                if (line.Contains("fare"))
-                {
-                    chr++;
-                }
-            }
-
-                foreach (var line in File.ReadAllLines("U:/Users/731777/beowolf.txt"))
-                {
-                    if (line.Contains("war") && line.Contains("fare"))
-                    {
-                        y++;
-                    }
-
-                }
-                z = chr - y;
-                Console.WriteLine("Total number of Lines which contain fare but not war: " + z);
-            }
+            StreamReader reader = new StreamReader("U:/Users/731777/beowolf.txt");
+            string script = reader.ReadToEnd();
+            int num = 0;
+            foreach (char letter in script)
+            { num++; }
+            Console.WriteLine("Total number of letters per word: " + num);
 
         }
+
     }
+}
 
 
 
