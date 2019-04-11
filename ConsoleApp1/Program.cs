@@ -1,4 +1,4 @@
-﻿//Section 3
+﻿//Section 4
 
 using System;
 using System.Collections.Generic;
@@ -18,45 +18,42 @@ namespace ConsoleApp1
         {
             Program p = new Program();
             p.Beowulf = new ArrayList();
-            p.Wordfind();
+            p.Wordfind2();
         }
-        public void Wordfind()
+        public void Wordfind2()
         {
-            int chr = 0;
+        
+            int chr = 0, y = 0, z = 0;
+
             foreach (var line in File.ReadAllLines("U:/Users/731777/beowolf.txt"))
             {
-                if (line.Contains("sea") && line.Contains("fare"))
-                {
 
+                if (line.Contains("fare"))
+                {
                     chr++;
                 }
-
             }
-            Console.WriteLine("Total words sea and fare in File are:" + chr);
-        }
 
+                foreach (var line in File.ReadAllLines("U:/Users/731777/beowolf.txt"))
+                {
+                    if (line.Contains("war") && line.Contains("fare"))
+                    {
+                        y++;
+                    }
 
-
-
-
-
-
-
-
-public int FindNumberOfBlankSpaces(string line)
-        {
-            //https://stackoverflow.com/questions/17812566/count-words-and-spaces-in-string-c-sharp
-            int countletters = 0;
-            int countSpaces = 0;
-
-            foreach (char c in line)
-            {
-                if (char.IsLetter(c)) { countletters++; }
-                if (char.IsWhiteSpace(c)) { countSpaces++; }
+                }
+                z = chr - y;
+                Console.WriteLine("Total number of Lines which contain fare but not war: " + z);
             }
-            return countSpaces;
-
 
         }
     }
-}
+
+
+
+
+
+
+
+
+
